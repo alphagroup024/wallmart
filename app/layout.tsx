@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
+import { Strings } from "@/lib/strings";
 
 export const metadata: Metadata = {
-  title: "Wallmart - HD and Live wallpaper",
-  description: "Get the best HD and Live wallpapers free.",
+  title: Strings.AppName,
+  description: Strings.AppDescription,
 };
 
 export default function RootLayout({
