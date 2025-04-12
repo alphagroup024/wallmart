@@ -51,13 +51,3 @@
     --color-surface-container-high: rgb(57 37 35);
     --color-surface-container-highest: rgb(68 48 45);
 }
-
-/* Password toggle button styles */
-[type="password"] + button {
-    color: var(--color-on-background) !important;
-}
-
-[type="password"] + button:hover {
-    color: var(--color-on-background) !important;
-    opacity: 0.8;
-}
