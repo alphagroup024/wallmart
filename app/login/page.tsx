@@ -3,10 +3,25 @@
 import Image from "next/image";
 import { Sources } from "@/lib/sources";
 import LoginForm from "@/components/loginForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { authenticateUser } from "@/app/features/auth/AuthSlice";
+import { redirect } from "next/navigation";
+import { RoutePaths } from "@/lib/routePaths";
+import { User } from "lucide-react";
 
 export default function Login() {
-  const [error, setError] = useState<string | null>(null);
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(
+    (state: any) => state.auth.isAuthenticated
+  );
+  const error = useSelector((state: any) => state.auth.error);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      redirect(RoutePaths.Dashboard);
+    }
+  }, [isAuthenticated]);
 
   return (
     <section className="bg-background h-screen w-screen relative overflow-hidden">
@@ -22,7 +37,12 @@ export default function Login() {
       <div className="relative w-full h-full flex flex-col items-center justify-center">
         <LoginForm
           onSubmitForm={(data) => {
-            console.log(data);
+            dispatch(
+              authenticateUser({
+                username: data.userName,
+                password: data.password,
+              })
+            );
           }}
           error={error}
         />

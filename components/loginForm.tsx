@@ -39,7 +39,7 @@ export default function LoginForm({ onSubmitForm, error }: LoginFormProps) {
   };
 
   return (
-    <div className="p-8 border-2 border-gray-300 rounded-lg w-96">
+    <div className="p-8 border-2 border-gray-300 rounded-lg w-100">
       <h1 className="text-2xl font-bold text-on-background">Login</h1>
       <Separator className="my-4 bg-on-background opacity-50 h-px" />
       <Form {...form}>
@@ -71,7 +71,6 @@ export default function LoginForm({ onSubmitForm, error }: LoginFormProps) {
                     placeholder="Password"
                     {...field}
                     type="password"
-                    aria-hidden="true"
                     className="text-on-background group-focus-within:text-on-background"
                   />
                 </FormControl>
@@ -86,7 +85,7 @@ export default function LoginForm({ onSubmitForm, error }: LoginFormProps) {
             >
               Submit
             </Button>
-            {error && <p className="text-error">Login failed.</p>}
+            {error && <p className="text-error">{error}</p>}
           </div>
         </form>
       </Form>

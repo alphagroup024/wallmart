@@ -9,6 +9,7 @@ interface User {
 interface AuthState {
     user: User;
     isAuthenticated: boolean;
+    error: string | null;
 }
 
 const initialState: AuthState = {
@@ -16,7 +17,8 @@ const initialState: AuthState = {
         username: "admin@alpha",
         password: "wallpaper.service@alpha"
     },
-    isAuthenticated: false
+    isAuthenticated: false,
+    error: null
 }
 
 const authSlice = createSlice({
@@ -25,6 +27,11 @@ const authSlice = createSlice({
     reducers: {
         authenticateUser(state, action: PayloadAction<User>) {
             state.isAuthenticated = action.payload.username === state.user.username && action.payload.password === state.user.password;
+            if (!state.isAuthenticated) {
+                state.error = "Invalid username or password";
+            } else {
+                state.error = null;
+            }
         }
     }
 })
