@@ -3,18 +3,19 @@
 import Image from "next/image";
 import { Sources } from "@/lib/sources";
 import LoginForm from "@/components/loginForm";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authenticateUser } from "@/lib/features/auth/AuthSlice";
 import { redirect } from "next/navigation";
 import { RoutePaths } from "@/lib/routePaths";
+import { RootState } from "@/lib/features/auth/types";
 
 export default function Login() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(
-    (state: any) => state.auth.isAuthenticated
+    (state: RootState) => state.auth.isAuthenticated
   );
-  const error = useSelector((state: any) => state.auth.error);
+  const error = useSelector((state: RootState) => state.auth.error);
 
   useEffect(() => {
     if (isAuthenticated) {
