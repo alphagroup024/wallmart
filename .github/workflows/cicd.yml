@@ -35,15 +35,19 @@ jobs:
     name: Deploy on Self-Hosted Server
     needs: build
     runs-on: self-hosted
-
+  
     steps:
+      - name: Docker Login
+        run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+  
       - name: Pull Docker Image
         run: docker pull jaybakre/wallpaper-service:latest
-
+  
       - name: Stop and Remove Existing Container
         run: |
           docker stop wallpaper-service || true
           docker rm wallpaper-service || true
-
+  
       - name: Run New Docker Container
         run: docker run -d -p 3000:3000 --name wallpaper-service jaybakre/wallpaper-service:latest
+  
