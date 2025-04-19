@@ -5,10 +5,9 @@ import { Sources } from "@/lib/sources";
 import LoginForm from "@/components/loginForm";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { authenticateUser } from "@/app/features/auth/AuthSlice";
+import { authenticateUser } from "@/lib/features/auth/AuthSlice";
 import { redirect } from "next/navigation";
 import { RoutePaths } from "@/lib/routePaths";
-import { User } from "lucide-react";
 
 export default function Login() {
   const dispatch = useDispatch();

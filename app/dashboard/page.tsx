@@ -1,3 +1,5 @@
 export default function Dashboard() {
-  return <div>Dashboard</div>;
+  return (
+    <section className="bg-background h-screen w-screen relative overflow-hidden"></section>
+  );
 }
