@@ -45,11 +45,11 @@ jobs:
 
       - name: Pull Docker Image
         run: sudo docker pull jaybakre/wallpaper-service:latest
-      
+
       - name: Stop and Remove Existing Container
         run: |
           sudo docker stop wallpaper-service || true
           sudo docker rm wallpaper-service || true
-      
+
       - name: Run New Docker Container
         run: sudo docker run -d -p 3000:3000 --name wallpaper-service jaybakre/wallpaper-service:latest
